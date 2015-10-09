@@ -1,0 +1,5 @@
+D:\Send Projects\Windows.Forms.HintTextBox\Windows.Forms.HintTextBox\bin\Debug\Windows.Forms.HintTextBox.dll
+D:\Send Projects\Windows.Forms.HintTextBox\Windows.Forms.HintTextBox\bin\Debug\Windows.Forms.HintTextBox.pdb
+D:\Send Projects\Windows.Forms.HintTextBox\Windows.Forms.HintTextBox\obj\Debug\Windows.Forms.HintTextBox.dll
+D:\Send Projects\Windows.Forms.HintTextBox\Windows.Forms.HintTextBox\obj\Debug\Windows.Forms.HintTextBox.pdb
+D:\Send Projects\Windows.Forms.HintTextBox\Windows.Forms.HintTextBox\obj\Debug\Windows.Forms.HintTextBox.csprojResolveAssemblyReference.cache

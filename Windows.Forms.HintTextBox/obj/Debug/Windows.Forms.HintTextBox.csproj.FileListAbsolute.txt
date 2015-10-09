@@ -1,7 +1,0 @@
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\out\ErrorLogAnalyzer\Windows.Forms.HintTextBox.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\out\ErrorLogAnalyzer\Windows.Forms.HintTextBox.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\src\Error Log Analyzer\Windows.Forms.DVTextBox\obj\Debug\Windows.Forms.HintTextBox.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\src\Error Log Analyzer\Windows.Forms.DVTextBox\obj\Debug\Windows.Forms.HintTextBox.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\src\Error Log Analyzer\Windows.Forms.HintTextBox\obj\Debug\Windows.Forms.HintTextBox.csprojResolveAssemblyReference.cache
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\src\Error Log Analyzer\Windows.Forms.HintTextBox\obj\Debug\Windows.Forms.HintTextBox.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\src\Error Log Analyzer\Windows.Forms.HintTextBox\obj\Debug\Windows.Forms.HintTextBox.pdb

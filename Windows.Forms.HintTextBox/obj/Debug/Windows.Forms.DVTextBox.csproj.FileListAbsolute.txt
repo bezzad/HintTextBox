@@ -1,5 +1,0 @@
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\out\ErrorLogAnalyzer\Windows.Forms.DVTextBox.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\out\ErrorLogAnalyzer\Windows.Forms.DVTextBox.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\src\Error Log Analyzer\Windows.Forms.DVTextBox\obj\Debug\Windows.Forms.DVTextBox.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\src\Error Log Analyzer\Windows.Forms.DVTextBox\obj\Debug\Windows.Forms.DVTextBox.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\src\Error Log Analyzer\Windows.Forms.DVTextBox\obj\Debug\Windows.Forms.DVTextBox.csprojResolveAssemblyReference.cache

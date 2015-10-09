@@ -1,0 +1,10 @@
+D:\Send Projects\Windows.Forms.HintTextBox\Demo\bin\Debug\Demo.exe
+D:\Send Projects\Windows.Forms.HintTextBox\Demo\bin\Debug\Demo.pdb
+D:\Send Projects\Windows.Forms.HintTextBox\Demo\bin\Debug\Windows.Forms.HintTextBox.dll
+D:\Send Projects\Windows.Forms.HintTextBox\Demo\bin\Debug\Windows.Forms.HintTextBox.pdb
+D:\Send Projects\Windows.Forms.HintTextBox\Demo\obj\Debug\Demo.csprojResolveAssemblyReference.cache
+D:\Send Projects\Windows.Forms.HintTextBox\Demo\obj\Debug\Demo.Properties.Resources.resources
+D:\Send Projects\Windows.Forms.HintTextBox\Demo\obj\Debug\Demo.csproj.GenerateResource.Cache
+D:\Send Projects\Windows.Forms.HintTextBox\Demo\obj\Debug\Demo.exe
+D:\Send Projects\Windows.Forms.HintTextBox\Demo\obj\Debug\Demo.pdb
+D:\Send Projects\Windows.Forms.HintTextBox\Demo\obj\Debug\Demo.Form1.resources
