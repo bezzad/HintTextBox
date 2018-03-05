@@ -4,66 +4,45 @@ using System.Collections.Generic;
 
 namespace Windows.Forms
 {
-    public enum Parameters
-    {
-        A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z
-    }
     public class MathParser
     {
-        private Dictionary<Parameters, decimal> _Parameters = new Dictionary<Parameters, decimal>();
-        private List<String> OperationOrder = new List<string>();
+        private readonly List<String> _operationOrder = new List<string>();
 
-        public Dictionary<Parameters, decimal> Parameters
-        {
-            get { return _Parameters; }
-            set { _Parameters = value; }
-        }
 
         public MathParser()
         {
-            OperationOrder.Add("/");
-            OperationOrder.Add("*");
-            OperationOrder.Add("-");
-            OperationOrder.Add("+");
+            _operationOrder.Add("/");
+            _operationOrder.Add("*");
+            _operationOrder.Add("-");
+            _operationOrder.Add("+");
         }
-        public decimal Calculate(string Formula)
+
+        public decimal Calculate(string formula)
         {
             try
             {
-                var arr = Formula.Split("/+-*()".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                foreach (var de in _Parameters)
+                while (formula.LastIndexOf("(", StringComparison.Ordinal) > -1)
                 {
-                    foreach (var s in arr)
-                    {
-                        if (s != de.Key.ToString() && s.EndsWith(de.Key.ToString()))
-                        {
-                            Formula = Formula.Replace(s, (Convert.ToDecimal(s.Replace(de.Key.ToString(), "")) * de.Value).ToString());
-                        }
-                    }
-                    Formula = Formula.Replace(de.Key.ToString(), de.Value.ToString());
-                }
-                while (Formula.LastIndexOf("(") > -1)
-                {
-                    var lastOpenPhrantesisIndex = Formula.LastIndexOf("(");
-                    var firstClosePhrantesisIndexAfterLastOpened = Formula.IndexOf(")", lastOpenPhrantesisIndex);
-                    var result = ProcessOperation(Formula.Substring(lastOpenPhrantesisIndex + 1, firstClosePhrantesisIndexAfterLastOpened - lastOpenPhrantesisIndex - 1));
-                    var AppendAsterix = false;
+                    var lastOpenPhrantesisIndex = formula.LastIndexOf("(", StringComparison.Ordinal);
+                    var firstClosePhrantesisIndexAfterLastOpened = formula.IndexOf(")", lastOpenPhrantesisIndex, StringComparison.Ordinal);
+                    var result = ProcessOperation(formula.Substring(lastOpenPhrantesisIndex + 1, firstClosePhrantesisIndexAfterLastOpened - lastOpenPhrantesisIndex - 1));
+                    var appendAsterix = false;
                     if (lastOpenPhrantesisIndex > 0)
                     {
-                        if (Formula.Substring(lastOpenPhrantesisIndex - 1, 1) != "(" && !OperationOrder.Contains(Formula.Substring(lastOpenPhrantesisIndex - 1, 1)))
+                        if (formula.Substring(lastOpenPhrantesisIndex - 1, 1) != "(" && !_operationOrder.Contains(formula.Substring(lastOpenPhrantesisIndex - 1, 1)))
                         {
-                            AppendAsterix = true;
+                            appendAsterix = true;
                         }
                     }
 
-                    Formula = Formula.Substring(0, lastOpenPhrantesisIndex) + (AppendAsterix ? "*" : "") + result.ToString() + Formula.Substring(firstClosePhrantesisIndexAfterLastOpened + 1);
+                    formula = formula.Substring(0, lastOpenPhrantesisIndex) + (appendAsterix ? "*" : "") + result + formula.Substring(firstClosePhrantesisIndexAfterLastOpened + 1);
 
                 }
-                return ProcessOperation(Formula);
+                return ProcessOperation(formula);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error Occured While Calculating. Check Syntax", ex);
+                throw new Exception("Error Occurred While Calculating. Check Syntax", ex);
             }
         }
 
@@ -74,7 +53,7 @@ namespace Windows.Forms
             for (var i = 0; i < operation.Length; i++)
             {
                 var currentCharacter = operation.Substring(i, 1);
-                if (OperationOrder.IndexOf(currentCharacter) > -1)
+                if (_operationOrder.IndexOf(currentCharacter) > -1)
                 {
                     if (s != "")
                     {
@@ -89,14 +68,13 @@ namespace Windows.Forms
                 }
             }
             arr.Add(s);
-            s = "";
-            foreach (var op in OperationOrder)
+            foreach (var op in _operationOrder)
             {
                 while (arr.IndexOf(op) > -1)
                 {
                     var operatorIndex = arr.IndexOf(op);
                     var digitBeforeOperator = Convert.ToDecimal(arr[operatorIndex - 1]);
-                    decimal digitAfterOperator = 0;
+                    decimal digitAfterOperator;
                     if (arr[operatorIndex + 1].ToString() == "-")
                     {
                         arr.RemoveAt(operatorIndex + 1);
@@ -113,27 +91,21 @@ namespace Windows.Forms
             }
             return Convert.ToDecimal(arr[0]);
         }
+
         private decimal CalculateByOperator(decimal number1, decimal number2, string op)
         {
-            if (op == "/")
+            switch (op)
             {
-                return number1 / number2;
-            }
-            else if (op == "*")
-            {
-                return number1 * number2;
-            }
-            else if (op == "-")
-            {
-                return number1 - number2;
-            }
-            else if (op == "+")
-            {
-                return number1 + number2;
-            }
-            else
-            {
-                return 0;
+                case "/":
+                    return number1 / number2;
+                case "*":
+                    return number1 * number2;
+                case "-":
+                    return number1 - number2;
+                case "+":
+                    return number1 + number2;
+                default:
+                    return 0;
             }
         }
     }

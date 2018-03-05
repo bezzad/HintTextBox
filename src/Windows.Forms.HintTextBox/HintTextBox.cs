@@ -12,6 +12,9 @@ namespace Windows.Forms
     public sealed class HintTextBox : TextBox
     {
         #region Members
+
+        private readonly MathParser _mathParser = new MathParser();
+
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Description("Hint text, when text box is empty this value be superseded."), Category("Appearance")]
@@ -21,11 +24,11 @@ namespace Windows.Forms
         {
             set
             {
-                this._hintValue = value;
+                _hintValue = value;
                 Text = value;
                 ForeColor = HintColor;
             }
-            get { return _hintValue; }
+            get => _hintValue;
         }
         private string _hintValue;
 
@@ -37,13 +40,13 @@ namespace Windows.Forms
         {
             set
             {
-                if (this.ForeColor == this._hintColor || Text == string.Empty || Text == this.HintValue)
+                if (ForeColor == _hintColor || Text == string.Empty || Text == HintValue)
                 {
-                    this.ForeColor = value;
+                    ForeColor = value;
                 }
                 _hintColor = value;
             }
-            get { return this._hintColor; }
+            get => _hintColor;
         }
         private Color _hintColor;
 
@@ -59,15 +62,15 @@ namespace Windows.Forms
         [DefaultValue(false)]
         public bool IsNumerical
         {
-            get { return _isNumerical; }
+            get => _isNumerical;
             set
             {
                 _isNumerical = value;
 
                 if (!value)
                 {
-                    this.ThousandsSeparator = false;
-                    this.AcceptMathChars = false;
+                    ThousandsSeparator = false;
+                    AcceptMathChars = false;
                 }
             }
         }
@@ -79,7 +82,7 @@ namespace Windows.Forms
         [DisplayName("Thousands Separator"), DefaultValue(false)]
         public bool ThousandsSeparator
         {
-            get { return _thousandsSeparator; }
+            get => _thousandsSeparator;
             set
             {
                 _thousandsSeparator = value;
@@ -106,7 +109,7 @@ namespace Windows.Forms
         [DefaultValue(false)]
         public bool AcceptMathChars
         {
-            get { return _acceptMathChars; }
+            get => _acceptMathChars;
             set
             {
                 _acceptMathChars = value;
@@ -121,8 +124,6 @@ namespace Windows.Forms
 
         public string MathParserResult { get; private set; }
 
-        private MathParser mathParser = new MathParser();
-
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Description("The real text of text box"), Category("Appearance")]
@@ -130,10 +131,7 @@ namespace Windows.Forms
         [Editor(typeof(MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string Value
         {
-            get
-            {
-                return (_hintValue != null && Text == HintValue) ? string.Empty : Text;
-            }
+            get => (_hintValue != null && Text == HintValue) ? string.Empty : Text;
             set
             {
                 if (value != string.Empty && value != HintValue)
@@ -149,10 +147,10 @@ namespace Windows.Forms
         public HintTextBox()
         {
             TextForeColor = Color.Black;
-            this.HintColor = Color.Gray;
-            this.HintValue = "Hint Value";
+            HintColor = Color.Gray;
+            HintValue = "Hint Value";
 
-            this.HandleCreated += (s, e) => { if (string.IsNullOrEmpty(Value)) Text = HintValue; };
+            HandleCreated += (s, e) => { if (string.IsNullOrEmpty(Value)) Text = HintValue; };
         }
 
         public HintTextBox(IContainer container)
@@ -167,11 +165,11 @@ namespace Windows.Forms
         {
             base.OnMouseDown(e);
             //
-            if (Text == this.HintValue)
+            if (Text == HintValue)
             {
                 // Clean hint text
                 Text = string.Empty;
-                this.ForeColor = TextForeColor;
+                ForeColor = TextForeColor;
             }
         }
 
@@ -183,8 +181,8 @@ namespace Windows.Forms
             if (Text == string.Empty)
             {
                 // Set to hint text
-                this.ForeColor = this.HintColor;
-                Text = this.HintValue;
+                ForeColor = HintColor;
+                Text = HintValue;
             }
         }
 
@@ -196,13 +194,13 @@ namespace Windows.Forms
             if (Text == string.Empty)
             {
                 // Set to hint text
-                this.ForeColor = this.HintColor;
-                Text = this.HintValue;
+                ForeColor = HintColor;
+                Text = HintValue;
             }
 
             if (ThousandsSeparator && !AcceptMathChars)
             {
-                var indexSelectionBuffer = this.SelectionStart;
+                var indexSelectionBuffer = SelectionStart;
                 if (!string.IsNullOrEmpty(Text) && e.KeyData != Keys.Left && e.KeyData != Keys.Right)
                 {
                     BigInteger valueBefore;
@@ -215,8 +213,8 @@ namespace Windows.Forms
                     if (BigInteger.TryParse(Text, style, culture, out valueBefore))
                     {
                         Text = String.Format(culture, "{0:N0}", valueBefore);
-                        if (e.KeyData != Keys.Delete && e.KeyData != Keys.Back) this.Select(Text.Length, 0);
-                        else this.Select(indexSelectionBuffer, 0);
+                        if (e.KeyData != Keys.Delete && e.KeyData != Keys.Back) Select(Text.Length, 0);
+                        else Select(indexSelectionBuffer, 0);
                     }
                 }
             }
@@ -228,11 +226,11 @@ namespace Windows.Forms
             base.OnKeyDown(e);
             //
             if (e.KeyCode == Keys.Enter && EnterToTab) SendKeys.Send("{TAB}");
-            else if (Text == this.HintValue)
+            else if (Text == HintValue)
             {
                 // Clean hint text
                 Text = string.Empty;
-                this.ForeColor = TextForeColor;
+                ForeColor = TextForeColor;
             }
         }
 
@@ -241,7 +239,7 @@ namespace Windows.Forms
         {
             base.OnKeyPress(e);
             //
-            if (!char.IsDigit(e.KeyChar) && this.IsNumerical)
+            if (!char.IsDigit(e.KeyChar) && IsNumerical)
             {
                 int charValue = e.KeyChar;
                 const int backKeyCharValue = 8; // 8 or '\b'
@@ -252,7 +250,8 @@ namespace Windows.Forms
                     e.Handled = false;
                     return;
                 }
-                else if (AcceptMathChars && !ThousandsSeparator)
+
+                if (AcceptMathChars && !ThousandsSeparator)
                 {
                     if (e.KeyChar == '+' || e.KeyChar == '-' ||
                         e.KeyChar == '*' || e.KeyChar == '/' ||
@@ -264,7 +263,6 @@ namespace Windows.Forms
                 }
 
                 e.Handled = true;
-                return;
             }
             else
             {
@@ -281,7 +279,7 @@ namespace Windows.Forms
             {
                 try
                 {
-                    MathParserResult = mathParser.Calculate(Text).ToString(CultureInfo.InvariantCulture);
+                    MathParserResult = _mathParser.Calculate(Text).ToString(CultureInfo.InvariantCulture);
                 }
                 catch { MathParserResult = ""; }
             }
