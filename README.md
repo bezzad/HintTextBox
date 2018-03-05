@@ -1,6 +1,7 @@
 # [Hint TextBox](https://github.com/Behzadkhosravifar/HintTextBox)
 --------------------
 [![Build status](https://ci.appveyor.com/api/projects/status/6k83xyu8ae2i123t?svg=true)](https://ci.appveyor.com/project/Behzadkhosravifar/hinttextbox)
+[![nuget version](https://img.shields.io/nuget/v/hinttextbox.svg)](https://www.nuget.org/packages/HintTextBox)
 
 A TextBox by default value to hint that and have some features such as Math Parser, Numeric Mode, Thousands Separator and etc.
 

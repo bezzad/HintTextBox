@@ -8,3 +8,5 @@ D:\Projects\HintTextBox\src\Windows.Forms.HintTextBox\bin\Debug\Windows.Forms.Hi
 D:\Projects\HintTextBox\src\Windows.Forms.HintTextBox\obj\Debug\Windows.Forms.HintTextBox.csproj.CoreCompileInputs.cache
 D:\Projects\HintTextBox\src\Windows.Forms.HintTextBox\obj\Debug\Windows.Forms.HintTextBox.dll
 D:\Projects\HintTextBox\src\Windows.Forms.HintTextBox\obj\Debug\Windows.Forms.HintTextBox.pdb
+D:\Projects\HintTextBox\Out\Windows.Forms.HintTextBox.dll
+D:\Projects\HintTextBox\Out\Windows.Forms.HintTextBox.pdb
