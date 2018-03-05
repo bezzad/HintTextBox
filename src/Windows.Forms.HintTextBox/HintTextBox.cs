@@ -28,8 +28,9 @@ namespace Windows.Forms
                 Text = value;
                 ForeColor = HintColor;
             }
-            get => _hintValue;
+            get { return _hintValue; }
         }
+
         private string _hintValue;
 
 
@@ -46,8 +47,9 @@ namespace Windows.Forms
                 }
                 _hintColor = value;
             }
-            get => _hintColor;
+            get { return _hintColor; }
         }
+
         private Color _hintColor;
 
 
@@ -62,7 +64,7 @@ namespace Windows.Forms
         [DefaultValue(false)]
         public bool IsNumerical
         {
-            get => _isNumerical;
+            get { return _isNumerical; }
             set
             {
                 _isNumerical = value;
@@ -74,6 +76,7 @@ namespace Windows.Forms
                 }
             }
         }
+
         private bool _isNumerical;
 
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
@@ -82,7 +85,7 @@ namespace Windows.Forms
         [DisplayName("Thousands Separator"), DefaultValue(false)]
         public bool ThousandsSeparator
         {
-            get => _thousandsSeparator;
+            get { return _thousandsSeparator; }
             set
             {
                 _thousandsSeparator = value;
@@ -93,6 +96,7 @@ namespace Windows.Forms
                 }
             }
         }
+
         private bool _thousandsSeparator;
 
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
@@ -109,7 +113,7 @@ namespace Windows.Forms
         [DefaultValue(false)]
         public bool AcceptMathChars
         {
-            get => _acceptMathChars;
+            get { return _acceptMathChars; }
             set
             {
                 _acceptMathChars = value;
@@ -120,6 +124,7 @@ namespace Windows.Forms
                 }
             }
         }
+
         private bool _acceptMathChars;
 
         public string MathParserResult { get; private set; }
@@ -131,7 +136,7 @@ namespace Windows.Forms
         [Editor(typeof(MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string Value
         {
-            get => (_hintValue != null && Text == HintValue) ? string.Empty : Text;
+            get { return (_hintValue != null && Text == HintValue) ? string.Empty : Text; }
             set
             {
                 if (value != string.Empty && value != HintValue)
